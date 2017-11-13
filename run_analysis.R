@@ -46,3 +46,5 @@ Summary_Means <- MeanStdData_Activity %>% group_by(SubjectID,Activity.Name) %>% 
 colnames(Summary_Means)[3:63] <- paste("Mean(",colnames(Summary_Means)[3:63],")",sep = "")
 
 write.table(Summary_Means, file = "./Summary_Means.txt")
+Col_Names <- colnames(Summary_Means)
+write.table(Col_Names, file = "./FeatureList.txt", col.names = FALSE, quote = FALSE)
