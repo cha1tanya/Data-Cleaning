@@ -25,23 +25,24 @@ colnames(x_test) <- features$V3
 test <- cbind(subject_test,y_test,x_test)
 
 # Step 1.3: Merge train and test data sets
-dat <- rbind(train,test)
+TrainAndTestData <- rbind(train,test)
 
 # Step 2: Extract only the measurements on the mean and standard deviation for each measurement.
-SelectColumns <- grep(".mean.|.std.",colnames(dat))
-dat2 <- dat[,c(1:2,SelectColumns)]
+SelectColumns <- grep(".mean.|.std.",colnames(TrainAndTestData))
+MeanStdData <- TrainAndTestData[,c(1:2,SelectColumns)]
 
 
 # Step 3: Use descriptive activity names to name the activities in the data set
 activity_labels <- read.table("./UCI HAR Dataset/activity_labels.txt",col.names = c("Activity","Activity.Name"))
 library(dplyr)
-dat3 <- inner_join(dat2,activity_labels,by="Activity")
-dat3 <- dat3[,c(1,64,3:63)]
+MeanStdData_Activity <- inner_join(MeanStdData,activity_labels,by="Activity")
+MeanStdData_Activity <- MeanStdData_Activity[,c(1,64,3:63)]
 
 # Step 4: Appropriately label the data set with descriptive variable names.
 # Each variable is labelled as and when defined in the steps above. Hence, there is no further need here.
 
 # Step 5: From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
-dat4 <- dat3 %>% group_by(SubjectID,Activity.Name) %>% summarise_all(mean)
-colnames(dat4)[3:63] <- paste("Mean(",colnames(dat4)[3:63],")",sep = "")
+Summary_Means <- MeanStdData_Activity %>% group_by(SubjectID,Activity.Name) %>% summarise_all(mean)
+colnames(Summary_Means)[3:63] <- paste("Mean(",colnames(Summary_Means)[3:63],")",sep = "")
 
+write.table(Summary_Means, file = "./Summary_Means.txt")
