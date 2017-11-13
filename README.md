@@ -1,10 +1,12 @@
 # Data-Cleaning
-------------------------------------------------------------------------------------------------------------------------
+
 Subject: Human Activity Recognition Using Smartphones Dataset - Preliminary analysis
+
 Version: 1.0
+
 Author: Chaitanya R.
+
 Date: 2017-11-12
-------------------------------------------------------------------------------------------------------------------------
 
 Human Activity Recognition Using Smartphones Dataset is used for this analysis. The dataset has train and test samples in seperate folders. Full description of the folders and the features in each of the folder may be found in README.txt file provided along with the dataset.
 
