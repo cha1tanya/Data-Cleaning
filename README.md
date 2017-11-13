@@ -22,3 +22,4 @@ The following steps were taken to find the means of selected variables in "run_a
 8. This data is grouped by the subject id and activity and mean of all other variables computed using summarise_all function
 
 The final file is written to a text file using write.table function.
+The column names are output in the FeaturesList.txt file
